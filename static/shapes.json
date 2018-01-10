@@ -1,0 +1,145 @@
+{
+    "circle": {
+        "area": ["radius_r"],
+        "circumference": ["radius_r"],
+        "diameter": ["radius_r"],
+        "radius": ["area_A"]
+    },
+    "cone": {
+        "base_area": ["radius_r"],
+        "height": ["surface_area", "radius_r"],
+        "lateral_surface": ["radius_r", "height_h"],
+        "radius": ["surface_area", "height_h"],
+        "slant_height": ["radius_r", "height_h"],
+        "surface_area": ["radius_r", "height_h"],
+        "volume": ["radius_r", "height_h"]
+    },
+    "cube": {
+        "diagonal": ["edge_a"],
+        "edge": ["surface_area"],
+        "surface_area": ["edge_a"],
+        "volume": ["edge_a"]
+    },
+    "cylinder": {
+        "base_area": ["radius_r"],
+        "height": ["area_A", "radius_r"],
+        "lateral_surface": ["radius_r", "height_h"],
+        "radius": ["surface_area", "height_h"],
+        "surface_area": ["radius_r", "height_h"],
+        "volume": ["radius_r", "height_h"]
+    },
+    "ellipse": {
+        "area": ["axis_a", "axis_b"],
+        "axis_a": ["area_A", "axis_b"],
+        "axis_b": ["area_A", "axis_a"],
+        "circumference": ["axis_a", "axis_b"]
+    },
+    "equilateral_triangle": {
+        "area": ["side_a"],
+        "perimeter": ["side_a"]
+    },
+    "heptagon": {
+        "area": ["side_a"],
+        "perimeter": ["side_a"],
+        "side": ["area_A"]
+    },
+    "hexagon": {
+        "area": ["side_a"],
+        "perimeter": ["side_a"],
+        "side": ["area_A"]
+    },
+    "isosceles_triangle": {
+        "area": ["height_h", "base_b"],
+        "base": ["area_A", "height_h"],
+        "height": ["area_A", "base_b"],
+        "perimeter": ["side_a", "base_b", "side_c"],
+        "side": ["area_A", "base_b", "gamma_y"]
+    },
+    "octagon": {
+        "area": ["side_a"],
+        "perimeter": ["side_a"],
+        "side": ["area_A"]
+    },
+    "octahedron": {
+        "surface_area": ["edge_a"],
+        "volume": ["edge_a"]
+    },
+    "parallelogram": {
+        "area": ["base_b", "height_h"],
+        "base": ["area_A", "height_h"],
+        "height": ["area_A", "base_b"],
+        "perimeter": ["side_a", "base_b"],
+        "side": ["perimeter_P", "base_b"]
+      },
+    "pentagon": {
+        "area": ["side_a"],
+        "diagonal": ["side_a"],
+        "perimeter": ["side_a"]
+    },
+    "pyramid": {
+        "base_area": ["width_w", "length_l"],
+        "base_length": ["base_area", "width_w"],
+        "base_width": ["base_area", "length_l"],
+        "height": ["volume_V", "width_w", "length_l"],
+        "lateral_surface": ["width_w", "length_l", "height_h"],
+        "surface_area": ["width_w", "length_l", "height_h"],
+        "volume": ["width_w", "length_l", "height_h"]
+    },
+    "rectangle": {
+        "area": ["width_w", "length_l"],
+        "diagonal": ["width_w", "length_l"],
+        "length": ["area_A", "width_w"],
+        "perimeter": ["width_w", "length_l"],
+        "width": ["area_A", "length_l"]
+    },
+    "rhombus": {
+        "area": ["diagonal_p", "diagonal_q"],
+        "diagonal_p": ["area_A", "diagonal_q"],
+        "diagonal_q": ["area_A", "diagonal_p"],
+        "perimeter": ["side_a"],
+        "side": ["diagonal_p", "diagonal_q"]
+    },
+    "right_triangle": {
+        "area": ["side_a", "base_b"],
+        "base": ["hypotenuse_c", "gamma_y"],
+        "hypotenuse": ["side_a", "base_b"],
+        "perimeter": ["side_a", "base_b", "hypotenuse_c"],
+        "side": ["hypotenuse_c", "gamma_y"]
+    },
+    "sphere": {
+        "diameter": ["radius_r"],
+        "radius": ["surface_area"],
+        "surface_area": ["radius_r"],
+        "volume": ["radius_r"]
+    },
+    "square": {
+        "area": ["side_a"],
+        "diagonal": ["side_a"],
+        "perimeter": ["side_a"],
+        "side": ["area_A"]
+    },
+    "tetrahedron": {
+        "edge": ["surface_area"],
+        "face_area": ["edge_a"],
+        "height": ["edge_a"],
+        "surface_area": ["edge_a"],
+        "volume": ["edge_a"]
+    },
+    "trapezoid": {
+        "area": ["base_a", "base_b", "height_h"],
+        "base_a": ["area_A", "base_b", "height_h"],
+        "base_b": ["area_A", "base_a", "height_h"],
+        "height": ["base_a", "base_b", "area_A"],
+        "perimeter": ["base_a", "base_b", "side_c", "side_d"],
+        "side_c": ["perimeter_P", "base_a", "base_b", "side_d"],
+        "side_d": ["perimeter_P", "base_a", "base_b", "side_c"]
+    },
+    "triangle": {
+        "area": ["height_h", "base_b"],
+        "base": ["area_A", "height_h"],
+        "height": ["area_A", "base_b"],
+        "perimeter": ["side_a", "base_b", "side_c"],
+        "side_a": ["area_A", "base_b", "gamma_y"],
+        "side_c": ["perimeter_P", "side_a", "side_b"]
+    }
+}

@@ -1,0 +1,49 @@
+from calculations import shape_functions
+
+def find(shape, formula, pairs):
+    result = None
+    if shape == 'circle':     
+        result = shape_functions.circle(formula, pairs)
+    elif shape == 'cone':
+        result = shape_functions.cone(formula, pairs)
+    elif shape == 'cube':
+        result = shape_functions.cube(formula, pairs)
+    elif shape == 'cylinder':
+        result = shape_functions.cylinder(formula, pairs)
+    elif shape == 'ellipse':
+        result = shape_functions.ellipse(formula, pairs)
+    elif shape == 'equilateral_triangle':
+        result = shape_functions.equilateral_triangle(formula, pairs)
+    elif shape == 'heptagon':
+        result = shape_functions.heptagon(formula, pairs)
+    elif shape == 'hexagon':
+        result = shape_functions.hexagon(formula, pairs)
+    elif shape == 'isosceles_triangle':
+        result = shape_functions.isosceles_triangle(formula, pairs)
+    elif shape == 'octagon':
+        result = shape_functions.octagon(formula, pairs)
+    elif shape == 'octahedron':
+        result = shape_functions.octahedron(formula, pairs)
+    elif shape == 'parallelogram':
+        result = shape_functions.parallelogram(formula, pairs)    
+    elif shape == 'pentagon':
+        result = shape_functions.pentagon(formula, pairs)  
+    elif shape == 'pyramid':
+        result = shape_functions.pyramid(formula, pairs)  
+    elif shape == 'rectangle':
+        result = shape_functions.rectangle(formula, pairs)  
+    elif shape == 'rhombus':
+        result = shape_functions.rhombus(formula, pairs)  
+    elif shape == 'right_triangle':
+        result = shape_functions.right_triangle(formula, pairs)  
+    elif shape == 'sphere':
+        result = shape_functions.sphere(formula, pairs)  
+    elif shape == 'square':
+        result = shape_functions.square(formula, pairs)
+    elif shape == 'tetrahedron':
+        result = shape_functions.tetrahedron(formula, pairs)  
+    elif shape == 'trapezoid':
+        result = shape_functions.trapezoid(formula, pairs)  
+    elif shape == 'triangle':
+        result = shape_functions.triangle(formula, pairs)  
+    return result
