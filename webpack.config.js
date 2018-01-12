@@ -6,11 +6,8 @@ module.exports = {
 		app: "./src/index.js"
 	},
 	output: {
-		// filename:"build/bundle.js",
-		// sourceMapFilename: "build/bundle.map"
 		filename:"static/bundle.js",
 	},
-    devtool: '#source-map',
 
 	module: {
 		loaders: [

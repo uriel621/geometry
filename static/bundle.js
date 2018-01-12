@@ -22430,12 +22430,15 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-//import 'semantic-ui-css/semantic.min.css'; // in index.html
-// import { Select } from 'semantic-ui-css'
+var mobile = '1px solid rgb(39, 145, 218)';
+if (/Mobi/.test(navigator.userAgent)) {
+    mobile = '';
+}
+
 var calculator_div_style = {
     'maxWidth': '560px',
     'height': '360px',
-    'border': '1px solid rgb(39, 145, 218)',
+    'border': mobile,
     'margin': '0 auto',
     'textAlign': 'center'
 };
@@ -22457,28 +22460,18 @@ var clearfix = {
 };
 
 var image_formula_div_style = {
-    'height': '70px',
-    'verticalAlign': 'middle',
-    'lineHeight': '70px'
-    // 'border': 'solid 0.5px'
-};
-
-var image_formula = {
-    // 'width':'78px', 
-    // 'height':'22px'
+    'height': '20%',
+    'verticalAlign': 'middle'
 };
 
 var details_div_style = {
-    'height': '220px'
+    'height': '50%'
 };
 
 var image_shape_div = {
     'float': 'left',
-    // 'border': 'solid 0.5px',
     'width': '50%',
-    'height': '100%',
-    'verticalAlign': 'middle',
-    'lineHeight': '220px'
+    'height': '100%'
 };
 
 var image_shape = {
@@ -22488,22 +22481,9 @@ var image_shape = {
 
 var input_data = {
     'float': 'right',
-    // 'border': 'solid 0.5px',
     'width': '50%',
     'height': '100%',
     'textAlign': 'left'
-    // 'verticalAlign': 'middle',
-    // 'lineHeight': '155px'
-};
-
-var input_div = {
-    // 'textAlign':'left'
-};
-
-var result_label = {
-    // marginTop: '10%',
-    // marginBottom: '10%',
-    // textAlign: 'center'
 };
 
 var input_css = {
@@ -22517,7 +22497,6 @@ var input_css = {
 };
 
 var Inputs = function Inputs(props) {
-    console.log('lolololol', props);
     return _react2.default.createElement(
         'div',
         null,
@@ -22557,24 +22536,12 @@ var Select = function Select(props) {
         'select',
         { className: 'select', style: props.style, onChange: props.method },
         props.options.map(function (option, index) {
-
             var section_text = option[0].toUpperCase() + option.slice(1);
             section_text = section_text.replace('_', ' ');
-            // cut the the word capital then join them
             var _index = section_text.indexOf(' ');
             if (_index !== -1) {
                 section_text[_index + 1].toUpperCase();
             }
-            // console.log(section_text)
-            // let section_text = option.replace('_', ' ')
-            // let _index = _section_text.indexOf(' ')
-            // console.log(_section_text)
-            // console.log(_index)
-
-            // if(_index !== -1){
-            //     console.log(section_text[_index + 1].toUpperCase() + option)
-            // }
-            // let section_text = option[0].toUpperCase() + option.slice(1);
             if (index === 0) {
                 option = _react2.default.createElement(
                     'option',
@@ -22701,12 +22668,6 @@ var App = function (_React$Component) {
     }, {
         key: 'calculate',
         value: function calculate(event) {
-            // console.log(event.target.id);
-            // console.log(event.target.value);
-            // console.log(this.state.current_shape);
-            // console.log(this.state.current_formula);
-            // console.log(this.state.needed_values.length);
-
             var form_data = new FormData();
             form_data.append("shape", this.state.current_shape);
             form_data.append("formula", this.state.current_formula);
@@ -22723,16 +22684,6 @@ var App = function (_React$Component) {
             });
             form_data.append("needed_values", some);
             if (this.state.needed_values.length === some.length) {
-                console.log(event.target);
-
-                // console.log('some: ', some)
-                // console.log(...form_data)
-                // let data = {
-                //     "shape": this.state.current_shape,
-                //     "formula": this.state.current_formula,
-                //     "needed_values": some,
-                // }
-
                 var request = new XMLHttpRequest();
                 request.open('POST', '/calculate', true);
                 request.send(form_data);
@@ -22762,7 +22713,6 @@ var App = function (_React$Component) {
     }, {
         key: 'render',
         value: function render() {
-            console.log(this.state);
             return _react2.default.createElement(
                 'div',
                 null,
@@ -22771,7 +22721,7 @@ var App = function (_React$Component) {
                     { style: calculator_div_style },
                     _react2.default.createElement(
                         'div',
-                        null,
+                        { style: { 'height': '15%' } },
                         _react2.default.createElement(
                             'h1',
                             { className: 'title is-3' },
@@ -22780,7 +22730,7 @@ var App = function (_React$Component) {
                     ),
                     _react2.default.createElement(
                         'div',
-                        null,
+                        { style: { 'height': '15%' } },
                         _react2.default.createElement(Select, { style: select_shape_style, options: this.state.all_shapes, method: this.find_formulas }),
                         _react2.default.createElement(Select, { style: select_formula_style, options: this.state.formulas_for_shapes, method: this.input_calculate }),
                         _react2.default.createElement('div', { style: clearfix })
@@ -22788,7 +22738,7 @@ var App = function (_React$Component) {
                     _react2.default.createElement(
                         'div',
                         { style: image_formula_div_style },
-                        _react2.default.createElement('img', { style: image_formula, src: this.state.image_formula })
+                        _react2.default.createElement('img', { src: this.state.image_formula })
                     ),
                     _react2.default.createElement(
                         'div',
@@ -22803,14 +22753,14 @@ var App = function (_React$Component) {
                             { style: input_data },
                             _react2.default.createElement(
                                 'label',
-                                { className: 'label', style: result_label },
-                                this.state.current_formula,
+                                { className: 'label' },
+                                this.state.current_formula.replace('_', ' '),
                                 ': ',
                                 this.state.answer
                             ),
                             _react2.default.createElement(
                                 'div',
-                                { style: { 'textAlign': 'center', 'marginTop': '8%', 'marginBottom': '8%' } },
+                                { style: { 'textAlign': 'center' } },
                                 _react2.default.createElement(Inputs, { values: this.state.needed_values, method: this.calculate })
                             )
                         ),
@@ -22823,45 +22773,8 @@ var App = function (_React$Component) {
 
     return App;
 }(_react2.default.Component);
-// request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8')
-
-
-// $.ajax({
-//     url: '/static/shapes.json',
-// type:'POST',
-// data: formdata: false,
-// proccessData:false,
-// contentType:false
-//     success: this.calculate_success
-// })
-
-
-//     // const request = new XMLHttpRequest();
-//     // request.open('post', url, true);
-
-//     // request.onload = function() {
-//     //     if(request.status >= 200 && request.status < 400) {
-//     //         console.log(request);
-//     //         var response = request.response;
-//     //         console.log('SUCCESS: ', response);
-//     //     }
-//     //     else {
-//     //         console.log('Target reached but error');
-//     //     }
-//     // }
-
-//     // request.onerror = function() {
-//     //     console.log('ERROR')
-//     // }
-//     // request.send();
-
-// fetch('/static/shapes.json')
-//     .then(response => response.json())
-//     .then(data => console.log(data))
-
 
 exports.default = App;
 
 /***/ })
 /******/ ]);
-//# sourceMappingURL=bundle.js.map

@@ -1,10 +1,14 @@
 import React from 'react';
-//import 'semantic-ui-css/semantic.min.css'; // in index.html
-// import { Select } from 'semantic-ui-css'
+
+let mobile = '1px solid rgb(39, 145, 218)';
+if (/Mobi/.test(navigator.userAgent)) {
+    mobile = ''
+}
+
 const calculator_div_style = {
     'maxWidth':'560px', 
     'height':'360px', 
-    'border':'1px solid rgb(39, 145, 218)',
+    'border': mobile,
     'margin':'0 auto',
     'textAlign':'center',
 }
@@ -26,28 +30,19 @@ const clearfix = {
 }
 
 const image_formula_div_style = {
-    'height':'70px',
+    'height':'20%',
     'verticalAlign': 'middle',
-    'lineHeight': '70px',
-    // 'border': 'solid 0.5px'
 }
 
-const image_formula = {
-    // 'width':'78px', 
-    // 'height':'22px'
-}
 
 const details_div_style = {
-    'height':'220px'
+    'height':'50%'
 }
 
 const image_shape_div = {
     'float':'left',
-    // 'border': 'solid 0.5px',
     'width':'50%',
     'height':'100%',
-    'verticalAlign': 'middle',
-    'lineHeight': '220px'
 }
 
 const image_shape = {
@@ -57,22 +52,9 @@ const image_shape = {
 
 const input_data = {
     'float':'right',
-    // 'border': 'solid 0.5px',
     'width':'50%',
     'height':'100%',
     'textAlign':'left'
-    // 'verticalAlign': 'middle',
-    // 'lineHeight': '155px'
-}
-
-const input_div = {
-    // 'textAlign':'left'
-}
-
-const result_label = {
-    // marginTop: '10%',
-    // marginBottom: '10%',
-    // textAlign: 'center'
 }
 
 const input_css = {
@@ -86,7 +68,6 @@ const input_css = {
 }
 
 const Inputs = (props) => {
-    console.log('lolololol', props)
     return(
         <div>
             {
@@ -113,7 +94,6 @@ const Inputs = (props) => {
     )
 }
 
-
 const Select = (props) => {
     if(!props.options){
         return (
@@ -124,24 +104,12 @@ const Select = (props) => {
         <select className="select" style={ props.style } onChange={ props.method }>
             {
                 props.options.map((option, index) => {
-                    
                     let section_text = option[0].toUpperCase() + option.slice(1);
                         section_text = section_text.replace('_', ' ')
-                        // cut the the word capital then join them
                     let _index = section_text.indexOf(' ')
                     if(_index !== -1){
                         section_text[_index + 1].toUpperCase()
                     }
-                    // console.log(section_text)
-                    // let section_text = option.replace('_', ' ')
-                    // let _index = _section_text.indexOf(' ')
-                    // console.log(_section_text)
-                    // console.log(_index)
-
-                    // if(_index !== -1){
-                    //     console.log(section_text[_index + 1].toUpperCase() + option)
-                    // }
-                    // let section_text = option[0].toUpperCase() + option.slice(1);
                     if(index === 0){
                         option = <option key={ index } value={ option } defaultValue>{ section_text }</option>;
                     }
@@ -158,7 +126,6 @@ const Select = (props) => {
 class App extends React.Component {
     constructor(props) {
         super(props);
-
         this.data = null;
         fetch('/static/shapes.json')
             .then(response => response.json())
@@ -246,19 +213,13 @@ class App extends React.Component {
     }
 
     calculate(event){
-        // console.log(event.target.id);
-        // console.log(event.target.value);
-        // console.log(this.state.current_shape);
-        // console.log(this.state.current_formula);
-        // console.log(this.state.needed_values.length);
-
-        var form_data = new FormData()
+        let form_data = new FormData()
             form_data.append("shape", this.state.current_shape);
             form_data.append("formula", this.state.current_formula);
 
             let some  = [];
             this.state.needed_values.forEach((value, index) => {
-                var input_values = document.querySelector(`#${ value }`).value;
+                let input_values = document.querySelector(`#${ value }`).value;
                 if(!input_values){
                     return
                 }
@@ -268,16 +229,6 @@ class App extends React.Component {
             })
         form_data.append("needed_values", some)
         if(this.state.needed_values.length === some.length){
-        console.log(event.target)
-            
-            // console.log('some: ', some)
-            // console.log(...form_data)
-            // let data = {
-            //     "shape": this.state.current_shape,
-            //     "formula": this.state.current_formula,
-            //     "needed_values": some,
-            // }
-            
             const request = new XMLHttpRequest();
                 request.open('POST', '/calculate', true);
                 request.send(form_data)
@@ -305,32 +256,27 @@ class App extends React.Component {
     }
 
     render(){
-        console.log(this.state)
         return (
             <div>
                 <div style={ calculator_div_style }>
-                    <div>
+                    <div style={{ 'height':'15%' }}>
                         <h1 className="title is-3">Geometry Calculator</h1>
                     </div>
-                    <div>
+                    <div  style={{ 'height':'15%' }}>
                         <Select style={ select_shape_style } options={ this.state.all_shapes } method={ this.find_formulas }/>
                         <Select style={ select_formula_style } options={ this.state.formulas_for_shapes } method={ this.input_calculate }/>
                         <div style={ clearfix }></div>
                     </div>
                     <div style={ image_formula_div_style }>
-                        <img style={ image_formula }src={ this.state.image_formula } />
-                        {/* <img style={ image_formula }src="https://i.ytimg.com/vi/riNAA-jx0u8/maxresdefault.jpg" /> */}
+                        <img src={ this.state.image_formula } />
                     </div>
                     <div style={ details_div_style }>
                         <div style={ image_shape_div } >
                             <img style={ image_shape } src={ this.state.image_shape } />
-                            {/* <img style={ image_shape } src="http://store-images.s-microsoft.com/image/apps.26251.13510798883213349.c74c048e-8bf5-42b5-9825-57104efe5ff6.058ff6e5-b6b5-4bd6-9fcc-4fda6bc214ec?w=180&h=180&q=60" /> */}
                         </div>
                         <div style={ input_data } >
-                            <label className="label" style = { result_label }>{ this.state.current_formula }: { this.state.answer }</label>
-                            {/* <div>{ 'Area' }: {'?'}</div> */}
-                            <div style={{ 'textAlign':'center', 'marginTop':'8%', 'marginBottom':'8%' }}>
-                                {/* { inputs(["radius"]) }  */}
+                            <label className="label">{ this.state.current_formula.replace('_', ' ') }: { this.state.answer }</label>
+                            <div style={{ 'textAlign':'center'}}>
                                 <Inputs values={ this.state.needed_values } method={ this.calculate }/>
                             </div>
                         </div>
@@ -341,39 +287,4 @@ class App extends React.Component {
         )
     }
 }
-// request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8')
-
-
-        // $.ajax({
-        //     url: '/static/shapes.json',
-                // type:'POST',
-                // data: formdata: false,
-                // proccessData:false,
-                // contentType:false
-        //     success: this.calculate_success
-        // })
-
-
-        //     // const request = new XMLHttpRequest();
-//     // request.open('post', url, true);
-
-//     // request.onload = function() {
-//     //     if(request.status >= 200 && request.status < 400) {
-//     //         console.log(request);
-//     //         var response = request.response;
-//     //         console.log('SUCCESS: ', response);
-//     //     }
-//     //     else {
-//     //         console.log('Target reached but error');
-//     //     }
-//     // }
-    
-//     // request.onerror = function() {
-//     //     console.log('ERROR')
-//     // }
-//     // request.send();
-
-// fetch('/static/shapes.json')
-//     .then(response => response.json())
-//     .then(data => console.log(data))
 export default App;
